@@ -3,12 +3,16 @@ import { defineStore } from 'pinia'
 import type { Account } from '../types/account.dto'
 
 export const useAccountStore = defineStore('account-store', () => {
-  const accounts = ref<Account[] | null>(null)
+  const accounts = ref<Account[]>([])
 
   function addAccount(newAccount: Account) {
     accounts.value?.push(newAccount)
   }
 
+  function deleteAccount(accountId: number) {
+    accounts.value = accounts.value?.filter(account => account.id !== accountId)
+  }
 
-  return { accounts, addAccount }
+
+  return { accounts, addAccount, deleteAccount }
 })

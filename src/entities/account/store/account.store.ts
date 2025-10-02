@@ -8,11 +8,9 @@ export const useAccountStore = defineStore('account-store', () => {
   function addAccount(newAccount: Account) {
     accounts.value?.push(newAccount)
   }
-
-  function deleteAccount(accountId: number) {
+  function deleteAccount(accountId: string) {
     accounts.value = accounts.value?.filter(account => account.id !== accountId)
   }
 
-
   return { accounts, addAccount, deleteAccount }
-})
+}, { persist: true })

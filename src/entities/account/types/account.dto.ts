@@ -1,7 +1,11 @@
 export interface Account {
-    id: number
-    tags: string
+    id: string
+    tags: Tag[]
     entry_type: string
     login: string
-    password: string
+    password: string | null
+}
+
+export interface Tag {
+    text: string;
 }

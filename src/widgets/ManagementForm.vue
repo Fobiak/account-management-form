@@ -4,17 +4,13 @@ import { storeToRefs } from 'pinia';
 import AccountItem from './AccountItem.vue';
 import { Plus } from '@element-plus/icons-vue'
 import type { Account } from '@/entities/account/types/account.dto';
-import { computed, ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import type { FormInstance } from 'element-plus';
 import { v4 as uuidv4 } from 'uuid'
 
 const accountStore = useAccountStore()
 const { accounts } = storeToRefs(accountStore)
 const itemRef = ref<FormInstance>()
-
-const filteredAccounts = computed(() =>
-    accountStore.accounts.filter(acc => acc.login?.trim())
-)
 
 async function handleAddAccount() {
     accountStore.addAccount({
@@ -33,6 +29,10 @@ function handleEditAccount(account: Account) {
 function handleDeleteAccount(account: Account) {
     accountStore.deleteAccount(account.id)
 }
+
+onMounted(() => {
+    accountStore.initAccounts(accountStore.accounts)
+})
 </script>
 
 <template>
@@ -56,7 +56,7 @@ function handleDeleteAccount(account: Account) {
         </div>
 
         <div class="flex flex-col items-center gap-2">
-            <AccountItem v-for="account in filteredAccounts" ref="itemRef" :key="account.id" :account="account"
+            <AccountItem v-for="(account) in accounts" ref="itemRef" :key="account.id" :account="account"
                 @edit-account="(newAccount) => handleEditAccount(newAccount)"
                 @delete-account="(account) => handleDeleteAccount(account)" />
         </div>

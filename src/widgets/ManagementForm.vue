@@ -23,8 +23,7 @@ async function handleAddAccount() {
 }
 
 function handleEditAccount(account: Account) {
-    const accountId = accounts.value.findIndex(acc => acc.id === account.id)
-    accounts.value[accountId] = { ...account }
+    accountStore.editAccount(account)
 }
 
 function handleDeleteAccount(account: Account) {

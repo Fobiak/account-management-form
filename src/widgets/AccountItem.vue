@@ -10,7 +10,7 @@ import { useAccountValidation } from '@/entities/account/composables/useAccountV
 const props = defineProps<{ account: Account }>()
 
 const emits = defineEmits<{
-    (e: 'deleteAccount', account: Account): void
+    (e: 'deleteAccount', accountId: string): void
     (e: 'editAccount', account: Account): void
 }>()
 
@@ -27,7 +27,7 @@ const formRules: FormRules = {
 }
 
 function handleDeleteAccount() {
-    emits('deleteAccount', accountValue.value)
+    emits('deleteAccount', accountValue.value.id)
 }
 
 function handlePasswordChange(value: string) {
@@ -45,7 +45,8 @@ function handlePasswordChange(value: string) {
 
             <el-form-item prop="entry_type" class="w-[184px]">
                 <el-select v-model="accountValue.entry_type" placeholder="Выбери тип записи" :options="entryTypeData"
-                    @blur="validateField(FIELDS_FORMS.ENTRY_TYPE)" />
+                    @blur="validateField(FIELDS_FORMS.ENTRY_TYPE)"
+                    @change="handlePasswordChange(accountValue.entry_type)" />
             </el-form-item>
 
             <el-form-item prop="login" class="flex-1">
@@ -54,8 +55,7 @@ function handlePasswordChange(value: string) {
 
             <el-form-item v-if="accountValue.entry_type === ENTRY_TYPE_LOCAL" prop="password" class="w-[184px]">
                 <el-input v-model="accountValue.password" maxlength="100" show-password
-                    @blur="validateField(FIELDS_FORMS.PASSWORD)"
-                    @change="handlePasswordChange(accountValue.entry_type)" />
+                    @blur="validateField(FIELDS_FORMS.PASSWORD)" />
             </el-form-item>
 
             <el-form-item>

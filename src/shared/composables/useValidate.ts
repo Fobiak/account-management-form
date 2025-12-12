@@ -8,19 +8,8 @@ function isRequired(options?: { trigger?: 'blur' | 'change', message?: string })
   }
 }
 
-function min(min: number, options?: { trigger?: 'blur' | 'change', message?: string }): FormItemRule {
-  const { message } = options || {}
-  return {
-    min,
-    message: message || `Минимум ${min} символов`,
-    trigger: options?.trigger || 'change',
-    type: 'number',
-  }
-}
-
 export function useValidate() {
   return {
     isRequired,
-    min,
   }
 }

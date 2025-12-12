@@ -21,9 +21,9 @@ const tagsInput = ref(accountValue.value.tags.map(t => t.text).join(';'))
 const { validateField } = useAccountValidation(formRef, accountValue, tagsInput, emits)
 
 const formRules: FormRules = {
-    entry_type: [isRequired({ message: ' ', trigger: 'blur' })],
-    login: [isRequired({ message: ' ', trigger: 'blur' })],
-    password: [isRequired({ message: ' ', trigger: 'blur' })]
+    entry_type: [isRequired({ trigger: 'blur' })],
+    login: [isRequired({ trigger: 'blur' })],
+    password: [isRequired({ trigger: 'blur' })]
 }
 
 function handleDeleteAccount() {

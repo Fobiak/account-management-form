@@ -24,9 +24,8 @@ export function useAccountValidation(
     try {
       await formRef.value.validateField(field)
       emit('editAccount', accountValue.value)
-    } catch (error) {
-      console.error(`Ошибка валидации поля ${field}:`, error)
-      ElMessage.error('Проверьте заполнение этого поля')
+    } catch {
+      ElMessage.error(`Поле ${field} заполнено неверно`)
     }
   }
 

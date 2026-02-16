@@ -1,4 +1,4 @@
-# 🧩 [Account Management Form](https://Fobiak.github.io/account-management-form)
+# 🔗 [Account Management Form](https://Fobiak.github.io/account-management-form)
 
 ![Demo](/src/shared/assets/AccountManagmentForm.gif)
 

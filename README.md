@@ -1,6 +1,4 @@
-# 🧩 Account Management Form
-
-https://Fobiak.github.io/account-management-form
+# 🧩 [Account Management Form](https://Fobiak.github.io/account-management-form)
 
 ![Demo](/src/shared/assets/AccountManagmentForm.gif)
 
@@ -31,27 +29,3 @@ https://Fobiak.github.io/account-management-form
 - Генерация уникальных идентификаторов для новых аккаунтов.
 
 ### 🧱 Для архитектура используется FSD, соблюдаются принципы SOLID
-
-
-## 🚀 Установка и запуск проекта
-
-### 📦 Установка зависимостей
-```sh
-npm install
-```
-
-### 🧪 Запуск в режиме разработки
-```sh
-npm run dev
-```
-
-### 🏭 Проверка типов + сборка для продакшена
-```sh
-npm run build
-```
-
-### 🔍 Линтинг
-```sh
-npm run lint
-```
-

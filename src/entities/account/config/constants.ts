@@ -12,3 +12,5 @@ export const FIELDS_FORMS = {
   LOGIN: 'login',
   PASSWORD: 'password',
 }
+
+export type AccountField = typeof FIELDS_FORMS[keyof typeof FIELDS_FORMS]

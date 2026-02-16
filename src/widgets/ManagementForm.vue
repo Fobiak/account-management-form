@@ -1,16 +1,18 @@
 <script setup lang="ts">
-import { useAccounts } from '@/entities/account/composables/useAccounts'
 import AccountItem from './AccountItem.vue'
 import { Plus } from '@element-plus/icons-vue'
 import { useAccountStore } from '@/entities/account/store/account.store'
+import { ENTRY_TYPE_LOCAL } from '@/entities/account/config/constants'
+import { computed } from 'vue'
+import { storeToRefs } from 'pinia'
 
-const { editAccount, deleteAccount } = useAccountStore()
+const accountStore = useAccountStore()
+const { editAccount, deleteAccount, addAccount } = accountStore
+const { accounts } =  storeToRefs(accountStore)
 
-const {
-    accounts,
-    showPasswordLabel,
-    addAccount,
-} = useAccounts()
+const showPasswordLabel = computed(() =>
+    accounts.value.some(acc => acc.entry_type === ENTRY_TYPE_LOCAL)
+)
 </script>
 
 <template>
@@ -34,8 +36,7 @@ const {
         </div>
 
         <div class="flex flex-col items-center gap-2">
-            <AccountItem v-for="account in accounts" :key="account.id" :account="account"
-                @edit-account="editAccount"
+            <AccountItem v-for="account in accounts" :key="account.id" :account="account" @edit-account="editAccount"
                 @delete-account="deleteAccount" />
         </div>
     </div>

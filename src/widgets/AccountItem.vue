@@ -11,7 +11,7 @@ const props = defineProps<{ account: Account }>()
 
 const emits = defineEmits<{
     (e: 'deleteAccount', accountId: string): void
-    (e: 'editAccount', account: Account): void
+    (e: 'editAccount', accountId: string, patch: Partial<Account>): void
 }>()
 
 const { isRequired } = useValidate()
@@ -32,7 +32,7 @@ function handleDeleteAccount() {
 
 function handlePasswordChange(value: string) {
     if (value === ENTRY_TYPE_LDAP)
-        accountValue.value.password = null
+        emits('editAccount', accountValue.value.id, { password: null })
 }
 </script>
 

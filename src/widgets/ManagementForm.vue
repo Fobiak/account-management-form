@@ -2,13 +2,14 @@
 import { useAccounts } from '@/entities/account/composables/useAccounts'
 import AccountItem from './AccountItem.vue'
 import { Plus } from '@element-plus/icons-vue'
+import { useAccountStore } from '@/entities/account/store/account.store'
+
+const { editAccount, deleteAccount } = useAccountStore()
 
 const {
     accounts,
     showPasswordLabel,
     addAccount,
-    editAccount,
-    deleteAccount
 } = useAccounts()
 </script>
 

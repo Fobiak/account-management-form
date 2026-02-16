@@ -8,7 +8,7 @@ export function useAccountValidation(
   formRef: Ref<FormInstance | undefined>,
   accountValue: Ref<Account>,
   tagsInput: Ref<string>,
-  emit: (e: 'editAccount', account: Account) => void
+  emit: (e: 'editAccount',  accountId: string, patch: Partial<Account>) => void
 ) {
   async function validateField(field: typeof FIELDS_FORMS[keyof typeof FIELDS_FORMS]) {
     if (!formRef.value) return
@@ -23,7 +23,7 @@ export function useAccountValidation(
 
     try {
       await formRef.value.validateField(field)
-      emit('editAccount', accountValue.value)
+      emit('editAccount', accountValue.value.id, accountValue.value)
     } catch {
       ElMessage.error(`Поле ${field} заполнено неверно`)
     }

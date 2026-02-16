@@ -5,9 +5,11 @@ import type { Account } from '../types/account.dto'
 export const useAccountStore = defineStore('account-store', () => {
   const accounts = ref<Account[]>([])
 
-  function editAccount(account: Account) {
-    const accountId = accounts.value.findIndex(acc => acc.id === account.id)
-    accounts.value[accountId] = { ...account }
+  function editAccount(accountId: string, patch: Partial<Account>) {
+    const accountFind = accounts.value.find(acc => acc.id === accountId)
+    if (!accountFind)
+      return
+    Object.assign(accountFind, patch)
   }
 
   function addAccount(newAccount: Account) {
